@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  height: 100vh;
+}
+
+body.dark {
+  background-color: #090D1F;
+}
+
+body * {
+  @apply transition-colors duration-200;
+}
