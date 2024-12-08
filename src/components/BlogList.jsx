@@ -26,7 +26,6 @@ const BlogList = ({page="10", button}) => {
     }
   };
   
-
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };

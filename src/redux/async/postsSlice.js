@@ -10,7 +10,7 @@ export const fetchPosts = createAsyncThunk("blog/posts", async (page) => {
 });
 
 export const fetchRecentPosts = createAsyncThunk("blog/recentPosts", async () => {
-  const response = await axios.get(`${API_URL}/games?page=5`);
+  const response = await axios.get(`${API_URL}/games`);
   return response.data;
 });
 

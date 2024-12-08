@@ -1,13 +1,19 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { subscribe } from "../redux/async/postsSlice";
+import DOMPurify from "dompurify";
 
 const NewsLetter = () => {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+
+  const handleChange = (e) => {
+    const sanitizedEmail = DOMPurify.sanitize(e.target.value);
+    setEmail(sanitizedEmail);
+  };
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
 
     if (email.trim() === "") {
       alert("Please enter your email address.");
@@ -17,8 +23,12 @@ const NewsLetter = () => {
       alert("Thank you for subscribing!");
     }
   };
+
   return (
-    <div className="flex flex-col justify-center items-center gap-8 py-10 lg:px-28 md:px-8" cy-data="news">
+    <div
+      className="flex flex-col justify-center items-center gap-8 py-10 lg:px-28 md:px-8"
+      cy-data="news"
+    >
       <p className="text-violet">Newsletters</p>
       <h2 className="text-5xl font-bold dark:text-white text-center">
         Stories and interviews
@@ -37,6 +47,8 @@ const NewsLetter = () => {
           name="email"
           id="email"
           placeholder="Enter Your email"
+          value={email}
+          onChange={handleChange}
           cy-data="form-input"
         />
         <button
